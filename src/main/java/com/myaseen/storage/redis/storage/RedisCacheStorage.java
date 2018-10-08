@@ -32,12 +32,15 @@ public class RedisCacheStorage {
     public Map<Object,Object> getAll(Object key){
         long time = System.currentTimeMillis();
         Map<Object,Object> value =template.opsForHash().entries(getKey(key));
-        LOGGER.log(Level.INFO,"time to store hash with "+value.keySet().size()+" keys in "+(time-System.currentTimeMillis())+"ms");
+        LOGGER.log(Level.INFO,"time to read hash with "+value.keySet().size()+" keys in "+(time-System.currentTimeMillis())+"ms");
         return value;
+    }
+
+    public void clearAll(Object key){
+        template.delete(getKey(key));
     }
 
     protected String getKey(Object key){
         return key.toString();
     }
-
 }

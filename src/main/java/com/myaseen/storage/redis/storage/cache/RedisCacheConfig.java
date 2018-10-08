@@ -15,8 +15,8 @@ public class RedisCacheConfig {
         RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new FSTSerializer());
-        redisTemplate.setHashValueSerializer(new FSTSerializer());
+        redisTemplate.setValueSerializer(FSTSerializer.getInstance());
+        redisTemplate.setHashValueSerializer(FSTSerializer.getInstance());
         return redisTemplate;
     }
 }
